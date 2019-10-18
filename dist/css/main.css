@@ -1,0 +1,366 @@
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background: #000;
+}
+
+* {
+  font: 16px arial, helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  color: #373737;
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.3);
+  background: transparent;
+}
+
+body {
+  font-size: 14px;
+  overflow-x: hidden;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: inherit;
+  text-transform: capitalize;
+}
+
+h1 {
+  color: #070707;
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
+h2 {
+  color: #171717;
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: #272727;
+}
+
+h4 {
+  font-size: 1em;
+  color: #272727;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  width: 100%;
+  vertical-align: middle;
+}
+
+section {
+  padding: 0;
+}
+
+.content {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content.clear-sky {
+  background:
+    border-box center/cover no-repeat
+    url("../images/clear_sky.jpg");
+  background-color: rgb(1, 1, 255);
+}
+
+.content.cloud {
+  background: border-box center/cover no-repeat url("../images/cloud.png");
+  background-color: rgb(50, 60, 255);
+}
+
+.content.mist {
+  background: border-box center/cover no-repeat url("../images/mist.jpg");
+  background-color: rgb(50, 50, 50);
+}
+
+.content.rain {
+  background: border-box center/cover no-repeat url("../images/rain.jpg");
+  background-color: rgb(10, 10, 255);
+}
+
+.content.snow {
+  background: border-box center/cover no-repeat url("../images/snow.jpg");
+  background-color: rgb(250, 250, 250);
+}
+
+.content.thunderstorm {
+  background:
+    border-box center/cover no-repeat
+    url("../images/thunderstorm.jpg");
+  background-color: rgb(200, 200, 200);
+}
+
+.card {
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid #dfe1e5;
+  border-radius: 8px;
+  margin: auto;
+  min-height: 324px;
+  width: 95%;
+  padding: 20px 16px 24px 16px;
+}
+
+.heading {
+  padding-bottom: 8px;
+}
+
+.heading,
+.details,
+.forcast {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 4px 0;
+}
+
+.details {
+  padding: 8px 0;
+}
+
+.main-temp {
+  margin-left: 8px;
+}
+
+.main-temp .digit {
+  font-size: 48px;
+}
+
+.weather-temperature {
+  min-width: 30%;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+
+.weather-details,
+.control-panel {
+  padding: 8px;
+}
+
+.weather-details-wraper {
+  padding: 8px;
+  width: fit-content;
+}
+
+.search,
+.button {
+  text-align: center;
+  padding: 4px;
+  width: 80%;
+  border-radius: 8px;
+  border: none;
+  box-shadow:
+    0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.search {
+  font-size: 14px;
+  background-color: rgb(245, 245, 245);
+}
+
+.button {
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  background-color: rgb(55, 55, 255);
+}
+
+.button:hover {
+  color: rgb(55, 55, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+.forcast {
+  padding-top: 8px;
+  cursor: pointer;
+}
+
+.forcast-card {
+  height: 98px;
+  min-width: 76px;
+}
+
+.weather-heading,
+.control-panel,
+.weather-temperature,
+.weather-details,
+.forcast-card {
+  min-width: 80%;
+  margin-top: 8px;
+}
+
+.precipitation,
+.humidity,
+.wind {
+  padding: 2px 0;
+  margin-top: 4px;
+}
+
+.weather-location,
+.weather-day,
+.weather-name,
+.weather-description {
+  margin-top: 4px;
+}
+
+.active.forcast-card {
+  border: 1px solid rgb(250, 250, 250);
+  border-radius: 2px;
+  background-color: rgb(250, 250, 250);
+  background-color: rgba(250, 250, 250, 0.8);
+  border-color: rgba(250, 250, 250, 0.8);
+}
+
+.forcast-card:hover {
+  border: 1px solid rgb(250, 250, 250);
+  border-radius: 1px;
+  background-color: rgb(250, 250, 250);
+  background-color: rgba(250, 250, 250, 0.8);
+  border-color: rgba(250, 250, 250, 0.8);
+}
+
+.forcast-card .day {
+  padding-top: 8px;
+}
+
+.forcast-card .img {
+  margin: 1px 4px 0;
+  height: 48px;
+  width: 48px;
+}
+
+.min-temp,
+.max-temp {
+  font-size: 12px;
+}
+
+.min-temp {
+  padding-right: 4px;
+}
+
+.choice {
+  margin: 2px;
+}
+
+.choice span {
+  margin: 2px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 38px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.slider::before {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  line-height: 26px;
+  content: "°C";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider::before {
+  content: "°F";
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+#metric,
+#imperial {
+  color: #c11;
+  font-weight: bold;
+}
+
+.checked#metric,
+.checked#imperial {
+  color: rgb(0, 80, 0);
+}
+
+@media (max-height: 386px) {
+  .card {
+    margin: 16px auto;
+  }
+}
+
+@media (min-width: 576px) {
+  .card {
+    min-width: 80%;
+  }
+
+  .weather-heading,
+  .control-panel,
+  .weather-temperature,
+  .weather-details {
+    min-width: 40%;
+  }
+
+  .forcast-card {
+    min-width: 18%;
+  }
+}
+
+@media (min-width: 780px) {
+  .card {
+    min-width: 624px;
+  }
+}
