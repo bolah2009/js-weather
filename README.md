@@ -23,7 +23,7 @@ The objective is to create a weather forecast app using the weather API. The fea
 - Clone the project
 
 ```bash
-git clone https://github.com/bolah2009/js-todo.git
+git clone https://github.com/bolah2009/js-weather.git
 
 ```
 
@@ -51,7 +51,7 @@ npm run-script build
 npm run-script start
 ```
 
-### [Assignment link](https://www.theodinproject.com/courses/javascript/lessons/todo-list)
+### [Assignment link](https://www.theodinproject.com/courses/javascript/lessons/weather-app)
 
 ### [Live link (Coming sooon)]()
 

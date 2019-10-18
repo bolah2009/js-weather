@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <meta property="og:site_name" content="https://bolabuari.com" />
+    <meta property="og:title" content="Weather App" />
+    <meta
+      property="og:description"
+      content="A weather forecast app using the weather API."
+    />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="https://bolabuari.com/js-weather/" />
+    <meta property="og:type" content="blog" />
+    <title>Weather App</title>
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/display.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div id="content" class="content clear-sky d-flex ai-c jc-c">
+      <section class="card">
+        <div class="heading d-flex col-reverse row-sm ai-c jc-sb">
+          <div class="weather-heading d-flex col ai-c">
+            <h1 class="weather-location">Olodo III</h1>
+            <p class="weather-day">Monday</p>
+            <p class="weather-name">Isolated Thunderstorms</p>
+            <p class="weather-description">Isolated Thunderstorms</p>
+          </div>
+          <div class="control-panel">
+            <form action="#" class="form d-flex col ai-c">
+              <input
+                type="search"
+                class="search"
+                placeholder="Enter Location (City)"
+                name="location"
+                id="location"
+              />
+              <label class="input unit d-flex col ai-c">
+                <div class="choice d-flex ai-c">
+                  <span id="metric" class="metric">Metric</span>
+                  <span class="switch">
+                    <input class="switch-unit" type="checkbox" checked />
+                    <span class="slider"></span>
+                  </span>
+                  <span class="checked imperial" id="imperial">Imperial</span>
+                </div>
+              </label>
+              <button type="button" class="button" id="get-location">
+                Get Weather Details
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="details d-flex col row-sm ai-c jc-sb">
+          <div class="weather-temperature d-flex ai-c jc-c">
+            <div class="img">
+              <img src="images/weather_icon.png" alt="rain and cloudy" />
+            </div>
+            <div class="main-temp d-flex">
+              <span class="digit">90</span><span class="unit">°F</span>
+            </div>
+          </div>
+          <div class="weather-details d-flex col ai-c">
+            <div class="weather-details-wraper">
+              <div class="precipitation">Precipitation: <span>40%</span></div>
+              <div class="humidity">Humidity: <span>84%</span></div>
+              <div class="wind">Wind: <span>5 mph</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="forcast d-flex col row-sm ai-c jc-sb">
+          <section class="forcast-card active d-flex col ai-c">
+            <h4 class="day">Mon</h4>
+            <div class="img">
+              <img src="images/weather_icon.png" alt="rain and cloudy" />
+            </div>
+            <div class="forcast-temp">
+              <span class="min-temp">85°</span>
+              <span class="max-temp">80°</span>
+            </div>
+          </section>
+          <section class="forcast-card d-flex col ai-c">
+            <h4 class="day">Tue</h4>
+            <div class="img">
+              <img src="images/weather_icon.png" alt="rain and cloudy" />
+            </div>
+            <div class="forcast-temp">
+              <span class="min-temp">85°</span>
+              <span class="max-temp">80°</span>
+            </div>
+          </section>
+          <section class="forcast-card d-flex col ai-c">
+            <h4 class="day">Wed</h4>
+            <div class="img">
+              <img src="images/weather_icon.png" alt="rain and cloudy" />
+            </div>
+            <div class="forcast-temp">
+              <span class="min-temp">85°</span>
+              <span class="max-temp">80°</span>
+            </div>
+          </section>
+          <section class="forcast-card d-flex col ai-c">
+            <h4 class="day">Thu</h4>
+            <div class="img">
+              <img src="images/weather_icon.png" alt="rain and cloudy" />
+            </div>
+            <div class="forcast-temp">
+              <span class="min-temp">85°</span>
+              <span class="max-temp">80°</span>
+            </div>
+          </section>
+          <section class="forcast-card d-flex col ai-c">
+            <h4 class="day">Fri</h4>
+            <div class="img">
+              <img src="images/weather_icon.png" alt="rain and cloudy" />
+            </div>
+            <div class="forcast-temp">
+              <span class="min-temp">85°</span>
+              <span class="max-temp">80°</span>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
