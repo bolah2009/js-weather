@@ -33,7 +33,6 @@ const getWeatherData = async location => {
     }
     if (filtered.length === 5) { break; }
   }
-
   return { forecasts: filtered, cityName };
 };
 
