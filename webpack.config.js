@@ -1,4 +1,6 @@
 const path = require('path');
+require('dotenv').config();
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -7,4 +9,12 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  node: {
+    fs: 'empty',
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.WEATHER_API': JSON.stringify(process.env.WEATHER_API),
+    }),
+  ],
 };
