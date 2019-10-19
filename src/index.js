@@ -17,7 +17,7 @@ const populateForecastData = async (city = 'Lagos,ng') => {
     const mainForecast = forecasts[position];
     element.forEach(({ dataset: { name } }, index) => {
       if (name === 'weatherIcon') {
-        const iconSource = `http://openweathermap.org/img/wn/${mainForecast[`${name}`]}@2x.png`;
+        const iconSource = `https://openweathermap.org/img/wn/${mainForecast[`${name}`]}@2x.png`;
         element[index].src = iconSource;
         element[index].alt = mainForecast.weatherDescription;
         return;
