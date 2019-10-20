@@ -7,3 +7,4 @@ files:
   ignore:
     - "dist/*.js"
     - "*.config.js"
+    - ".eslintrc.js"
