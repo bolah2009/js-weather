@@ -1,20 +1,21 @@
 import getWeatherData from './modules/weather';
 
-
 const locationHeaderElement = document.querySelector('.weather-location');
 const mainWeatherDataElement = document.querySelectorAll('.main-weather-data');
 const forecastDataElement = document.querySelectorAll('.forecast-card');
-
+const unitCheckBox = document.querySelector('input[type="checkbox"]');
 
 const populateForecastData = async (city = 'Lagos,ng') => {
-  const { forecasts, cityName } = await getWeatherData(city);
+  let { forecasts, cityName, message } = await getWeatherData(city);
 
-  const locationHeader = () => {
-    locationHeaderElement.textContent = cityName;
+  const locationHeader = (status = cityName) => {
+    locationHeaderElement.textContent = status;
   };
 
-  const attachDataToDOM = (position, element) => {
-    const mainForecast = forecasts[position];
+  if (message) { return locationHeader(message); }
+
+  const attachDataToDOM = (position, element, unitType = 'metric') => {
+    const mainForecast = forecasts[position][`${unitType}`];
     element.forEach(({ dataset: { name } }, index) => {
       if (name === 'weatherIcon') {
         const iconSource = `https://openweathermap.org/img/wn/${mainForecast[`${name}`]}@2x.png`;
@@ -26,25 +27,36 @@ const populateForecastData = async (city = 'Lagos,ng') => {
     });
   };
 
-  const main = (day = 0) => {
-    attachDataToDOM(day, mainWeatherDataElement);
-  };
+  const main = (unit, day = 0) => attachDataToDOM(day, mainWeatherDataElement, unit);
 
-  const forecast = () => {
-    forecastDataElement.forEach((card) => {
+  const forecast = unit => {
+    forecastDataElement.forEach(card => {
       const { dataset: { day } } = card;
       const cardNodeList = card.querySelectorAll('[data-name]');
-      attachDataToDOM(day, cardNodeList);
+      attachDataToDOM(day, cardNodeList, unit);
     });
   };
 
-  const all = () => {
-    locationHeader();
-    main();
-    forecast();
+  const all = (unit = 'metric') => {
+    locationHeader(cityName);
+    main(unit);
+    forecast(unit);
   };
 
-  return { all, main };
+  const toggleUnit = unit => {
+    main(unit);
+    forecast(unit);
+  };
+
+  const changeCity = async (newCity, newUnit) => {
+    ({ forecasts, cityName, message } = await getWeatherData(newCity));
+    if (message) { return locationHeader(message); }
+    return all(newUnit);
+  };
+
+  return {
+    all, main, toggleUnit, changeCity,
+  };
 };
 
 
@@ -52,13 +64,14 @@ const startApp = () => {
   const metric = document.querySelector('#metric');
   const imperial = document.querySelector('#imperial');
   const locationInput = document.querySelector('#location');
+  const forecastDataPromise = populateForecastData();
 
-  populateForecastData().then((obj) => obj.all());
+  const getUnit = () => (unitCheckBox.checked ? 'imperical' : 'metric');
+  forecastDataPromise.then(obj => obj.all(getUnit()));
 
-
-  document
-    .querySelector('input[type="checkbox"]')
+  unitCheckBox
     .addEventListener('click', ({ target: { checked } }) => {
+      forecastDataPromise.then(obj => obj.toggleUnit(getUnit()));
       imperial.classList.toggle('checked', checked);
       metric.classList.toggle('checked', !checked);
     });
@@ -67,7 +80,7 @@ const startApp = () => {
     .querySelector('#get-location')
     .addEventListener('click', () => {
       const city = locationInput.value;
-      populateForecastData(city).then((obj) => obj.all());
+      forecastDataPromise.then(obj => obj.changeCity(city, getUnit()));
     });
 };
 
