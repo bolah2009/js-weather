@@ -25,7 +25,8 @@ const getWeatherData = async location => {
 
   for (let index = 0; index < list.length; index += 1) {
     const listDay = (new Date(list[index].dt_txt)).getDay();
-    if (listDay === day) {
+    const listHour = (new Date(list[index].dt_txt)).getHours();
+    if (listDay === day && listHour > 6) {
       const formatForecastData = formatData(list[index]);
       filtered.push(formatForecastData);
       day += 1;

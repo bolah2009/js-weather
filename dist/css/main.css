@@ -76,34 +76,43 @@ section {
   min-height: 100vh;
 }
 
-.content.clear-sky {
+.content.clear-weather {
   background:
     border-box center/cover no-repeat
     url("../images/clear_sky.jpg");
   background-color: rgb(1, 1, 255);
 }
 
-.content.cloud {
+.content.clouds-weather {
   background: border-box center/cover no-repeat url("../images/cloud.png");
   background-color: rgb(50, 60, 255);
 }
 
-.content.mist {
+.content.tornado-weather,
+.content.mist-weather,
+.content.smoke-weather,
+.content.haze-weather,
+.content.fog-weather,
+.content.sand-weather,
+.content.dust-weather,
+.content.ash-weather,
+.content.squall-weather {
   background: border-box center/cover no-repeat url("../images/mist.jpg");
   background-color: rgb(50, 50, 50);
 }
 
-.content.rain {
+.content.drizzle-weather,
+.content.rain-weather {
   background: border-box center/cover no-repeat url("../images/rain.jpg");
   background-color: rgb(10, 10, 255);
 }
 
-.content.snow {
+.content.snow-weather {
   background: border-box center/cover no-repeat url("../images/snow.jpg");
   background-color: rgb(250, 250, 250);
 }
 
-.content.thunderstorm {
+.content.thunderstorm-weather {
   background:
     border-box center/cover no-repeat
     url("../images/thunderstorm.jpg");
@@ -256,6 +265,10 @@ section {
   margin: 1px 4px 0;
   height: 48px;
   width: 48px;
+}
+
+.forecast-card .unit {
+  font-size: 0.6em;
 }
 
 .min-temp,

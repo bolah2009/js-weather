@@ -31,19 +31,19 @@
       <section class="card">
         <div class="heading d-flex col-reverse row-sm ai-c jc-sb">
           <div class="weather-heading d-flex col ai-c">
-            <h1 class="weather-location">Olodo III</h1>
-            <p class="weather-day main-weather-data" data-name="date">Monday</p>
+            <h1 class="weather-location">City</h1>
+            <p class="weather-day main-weather-data" data-name="date">Day (Time)</p>
             <p
               class="weather-name main-weather-data"
               data-name="weatherCondition"
             >
-              Isolated Thunderstorms
+              Weather Condition
             </p>
             <p
               class="weather-description main-weather-data"
               data-name="weatherDescription"
             >
-              Isolated Thunderstorms
+             Weather Description
             </p>
           </div>
           <div class="control-panel">
@@ -59,13 +59,13 @@
                 <div class="choice d-flex ai-c">
                   <span id="metric" class="metric">Metric</span>
                   <span class="switch">
-                    <input class="switch-unit" type="checkbox" checked />
+                    <input data-action="toggleUnit" class="switch-unit" type="checkbox" checked />
                     <span class="slider"></span>
                   </span>
                   <span class="checked imperial" id="imperial">Imperial</span>
                 </div>
               </label>
-              <button type="button" class="button" id="get-location">
+              <button data-action="getWeather" type="button" class="button" id="get-location">
                 Get Weather Details
               </button>
             </form>
@@ -82,8 +82,8 @@
               />
             </div>
             <div class="main-temp d-flex">
-              <span class="digit main-weather-data" data-name="temp">90</span
-              ><span class="unit"></span>
+              <span class="digit main-weather-data d-flex" data-name="temp">90</span
+              >
             </div>
           </div>
           <div class="weather-details d-flex col ai-c">
@@ -134,8 +134,8 @@
           </div>
         </div>
         <div class="forecast d-flex col row-sm ai-c jc-sb">
-          <section class="forecast-card active d-flex col ai-c" data-day="0">
-            <h4 class="day" data-name="date">Mon</h4>
+          <section data-day="0" class="forecast-card active d-flex col ai-c">
+            <h4 class="day" data-name="forecastDate">Mon</h4>
             <div class="img">
               <img
                 src="images/weather_icon.png"
@@ -143,13 +143,13 @@
                 data-name="weatherIcon"
               />
             </div>
-            <div class="forecast-temp">
-              <span class="min-temp" data-name="tempMin">85°</span>
-              <span class="max-temp" data-name="tempMax">80°</span>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
             </div>
           </section>
           <section class="forecast-card d-flex col ai-c" data-day="1">
-            <h4 class="day" data-name="date">
+            <h4 class="day" data-name="forecastDate">
               Tue
             </h4>
             <div class="img">
@@ -159,13 +159,13 @@
                 data-name="weatherIcon"
               />
             </div>
-            <div class="forecast-temp">
-              <span class="min-temp" data-name="tempMin">85°</span>
-              <span class="max-temp" data-name="tempMax">80°</span>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
             </div>
           </section>
           <section class="forecast-card d-flex col ai-c" data-day="2">
-            <h4 class="day" data-name="date">
+            <h4 class="day" data-name="forecastDate">
               Wed
             </h4>
             <div class="img">
@@ -175,13 +175,13 @@
                 data-name="weatherIcon"
               />
             </div>
-            <div class="forecast-temp">
-              <span class="min-temp" data-name="tempMin">85°</span>
-              <span class="max-temp" data-name="tempMax">80°</span>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
             </div>
           </section>
           <section class="forecast-card d-flex col ai-c" data-day="3">
-            <h4 class="day" data-name="date">
+            <h4 class="day" data-name="forecastDate">
               Thu
             </h4>
             <div class="img">
@@ -191,13 +191,13 @@
                 data-name="weatherIcon"
               />
             </div>
-            <div class="forecast-temp">
-              <span class="min-temp" data-name="tempMin">85°</span>
-              <span class="max-temp" data-name="tempMax">80°</span>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
             </div>
           </section>
           <section class="forecast-card d-flex col ai-c" data-day="4">
-            <h4 class="day" data-name="date">
+            <h4 class="day" data-name="forecastDate">
               Fri
             </h4>
             <div class="img">
@@ -207,9 +207,9 @@
                 data-name="weatherIcon"
               />
             </div>
-            <div class="forecast-temp">
-              <span class="min-temp" data-name="tempMin">85°</span>
-              <span class="max-temp" data-name="tempMax">80°</span>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
             </div>
           </section>
         </div>
