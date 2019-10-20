@@ -32,9 +32,19 @@
         <div class="heading d-flex col-reverse row-sm ai-c jc-sb">
           <div class="weather-heading d-flex col ai-c">
             <h1 class="weather-location">Olodo III</h1>
-            <p class="weather-day">Monday</p>
-            <p class="weather-name">Isolated Thunderstorms</p>
-            <p class="weather-description">Isolated Thunderstorms</p>
+            <p class="weather-day main-weather-data" data-name="date">Monday</p>
+            <p
+              class="weather-name main-weather-data"
+              data-name="weatherCondition"
+            >
+              Isolated Thunderstorms
+            </p>
+            <p
+              class="weather-description main-weather-data"
+              data-name="weatherDescription"
+            >
+              Isolated Thunderstorms
+            </p>
           </div>
           <div class="control-panel">
             <form action="#" class="form d-flex col ai-c">
@@ -64,69 +74,142 @@
         <div class="details d-flex col row-sm ai-c jc-sb">
           <div class="weather-temperature d-flex ai-c jc-c">
             <div class="img">
-              <img src="images/weather_icon.png" alt="rain and cloudy" />
+              <img
+                src="images/weather_icon.png"
+                alt="rain and cloudy"
+                class="main-weather-data main-icon"
+                data-name="weatherIcon"
+              />
             </div>
             <div class="main-temp d-flex">
-              <span class="digit">90</span><span class="unit">°F</span>
+              <span class="digit main-weather-data" data-name="temp">90</span
+              ><span class="unit">°F</span>
             </div>
           </div>
           <div class="weather-details d-flex col ai-c">
             <div class="weather-details-wraper">
-              <div class="precipitation">Precipitation: <span>40%</span></div>
-              <div class="humidity">Humidity: <span>84%</span></div>
-              <div class="wind">Wind: <span>5 mph</span></div>
+              <div class="precipitation ">
+                Cloudiness:
+                <span class="main-weather-data" data-name="cloudiness"
+                  >40%</span
+                >
+              </div>
+              <div class="humidity">
+                Humidity:
+                <span class="main-weather-data" data-name="humidity">84%</span>
+              </div>
+              <div class="wind">
+                Pressure:
+                <span class="main-weather-data" data-name="pressure"
+                  >5 mph</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="weather-details d-flex col ai-c">
+            <div class="weather-details-wraper">
+              <div class="precipitation ">
+                Wind Speed:
+                <span class="main-weather-data" data-name="windSpeed">40%</span>
+              </div>
+              <div class="humidity">
+                Wind Direction:
+                <span class="main-weather-data" data-name="windDirection"
+                  >84%</span
+                >
+              </div>
+              <div class="wind">
+                Ground Level:
+                <span class="main-weather-data" data-name="groundLevel"
+                  >5 mph</span
+                >
+              </div>
+              <div class="wind">
+                Sea Level:
+                <span class="main-weather-data" data-name="seaLevel"
+                  >5 mph</span
+                >
+              </div>
             </div>
           </div>
         </div>
-        <div class="forcast d-flex col row-sm ai-c jc-sb">
-          <section class="forcast-card active d-flex col ai-c">
-            <h4 class="day">Mon</h4>
+        <div class="forecast d-flex col row-sm ai-c jc-sb">
+          <section class="forecast-card active d-flex col ai-c" data-day="0">
+            <h4 class="day" data-name="date">Mon</h4>
             <div class="img">
-              <img src="images/weather_icon.png" alt="rain and cloudy" />
+              <img
+                src="images/weather_icon.png"
+                alt="rain and cloudy"
+                data-name="weatherIcon"
+              />
             </div>
-            <div class="forcast-temp">
-              <span class="min-temp">85°</span>
-              <span class="max-temp">80°</span>
+            <div class="forecast-temp">
+              <span class="min-temp" data-name="tempMin">85°</span>
+              <span class="max-temp" data-name="tempMax">80°</span>
             </div>
           </section>
-          <section class="forcast-card d-flex col ai-c">
-            <h4 class="day">Tue</h4>
+          <section class="forecast-card d-flex col ai-c" data-day="1">
+            <h4 class="day" data-name="date">
+              Tue
+            </h4>
             <div class="img">
-              <img src="images/weather_icon.png" alt="rain and cloudy" />
+              <img
+                src="images/weather_icon.png"
+                alt="rain and cloudy"
+                data-name="weatherIcon"
+              />
             </div>
-            <div class="forcast-temp">
-              <span class="min-temp">85°</span>
-              <span class="max-temp">80°</span>
+            <div class="forecast-temp">
+              <span class="min-temp" data-name="tempMin">85°</span>
+              <span class="max-temp" data-name="tempMax">80°</span>
             </div>
           </section>
-          <section class="forcast-card d-flex col ai-c">
-            <h4 class="day">Wed</h4>
+          <section class="forecast-card d-flex col ai-c" data-day="2">
+            <h4 class="day" data-name="date">
+              Wed
+            </h4>
             <div class="img">
-              <img src="images/weather_icon.png" alt="rain and cloudy" />
+              <img
+                src="images/weather_icon.png"
+                alt="rain and cloudy"
+                data-name="weatherIcon"
+              />
             </div>
-            <div class="forcast-temp">
-              <span class="min-temp">85°</span>
-              <span class="max-temp">80°</span>
+            <div class="forecast-temp">
+              <span class="min-temp" data-name="tempMin">85°</span>
+              <span class="max-temp" data-name="tempMax">80°</span>
             </div>
           </section>
-          <section class="forcast-card d-flex col ai-c">
-            <h4 class="day">Thu</h4>
+          <section class="forecast-card d-flex col ai-c" data-day="3">
+            <h4 class="day" data-name="date">
+              Thu
+            </h4>
             <div class="img">
-              <img src="images/weather_icon.png" alt="rain and cloudy" />
+              <img
+                src="images/weather_icon.png"
+                alt="rain and cloudy"
+                data-name="weatherIcon"
+              />
             </div>
-            <div class="forcast-temp">
-              <span class="min-temp">85°</span>
-              <span class="max-temp">80°</span>
+            <div class="forecast-temp">
+              <span class="min-temp" data-name="tempMin">85°</span>
+              <span class="max-temp" data-name="tempMax">80°</span>
             </div>
           </section>
-          <section class="forcast-card d-flex col ai-c">
-            <h4 class="day">Fri</h4>
+          <section class="forecast-card d-flex col ai-c" data-day="4">
+            <h4 class="day" data-name="date">
+              Fri
+            </h4>
             <div class="img">
-              <img src="images/weather_icon.png" alt="rain and cloudy" />
+              <img
+                src="images/weather_icon.png"
+                alt="rain and cloudy"
+                data-name="weatherIcon"
+              />
             </div>
-            <div class="forcast-temp">
-              <span class="min-temp">85°</span>
-              <span class="max-temp">80°</span>
+            <div class="forecast-temp">
+              <span class="min-temp" data-name="tempMin">85°</span>
+              <span class="max-temp" data-name="tempMax">80°</span>
             </div>
           </section>
         </div>

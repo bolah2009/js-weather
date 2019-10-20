@@ -1,4 +1,4 @@
-# PROJECT: Weather Forcast App
+# PROJECT: Weather Forecast App
 
 This is the fifth project of the Main JavaScript curriculum at [Microverse](https://www.microverse.org/) - @microverseinc
 
@@ -53,7 +53,7 @@ npm run-script start
 
 ### [Assignment link](https://www.theodinproject.com/courses/javascript/lessons/weather-app)
 
-### [Live link (Coming sooon)]()
+### [Live link](https://bolah2009.github.io/js-weather/)
 
 ### Screenshots
 

@@ -38,5 +38,8 @@
   "bugs": {
     "url": "https://github.com/bolah2009/js-weather/issues"
   },
-  "homepage": "https://github.com/bolah2009/js-weather#readme"
+  "homepage": "https://github.com/bolah2009/js-weather#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
