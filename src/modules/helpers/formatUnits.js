@@ -50,9 +50,10 @@ const formatData = data => {
     return formatDate().toShortDay(date);
   };
 
+  const concatenateUnitandValue = (value, unit) => `${value.toFixed(0)}<span class="unit">${unit}</span>`;
   const formatUnit = (param, paramUnit, obj = {}) => {
     const value = obj[`${param}`];
-    return `${value.toFixed(0)} ${paramUnit}`;
+    return concatenateUnitandValue(value, paramUnit);
   };
 
   const convertCelsuisToFahrenheit = value => (((value * 9) / 5) + 32);
@@ -61,7 +62,7 @@ const formatData = data => {
   const convertUnit = (converter, param, paramUnit, obj = {}) => {
     const value = obj[`${param}`];
     const convertValue = converter(value);
-    return `${convertValue.toFixed(0)} ${paramUnit}`;
+    return concatenateUnitandValue(convertValue, paramUnit);
   };
 
   const formatMetricUnits = obj => {
@@ -69,7 +70,7 @@ const formatData = data => {
       temp: formatUnit('temp', '°C', obj),
       tempMax: formatUnit('tempMax', '°C', obj),
       tempMin: formatUnit('tempMin', '°C', obj),
-      windSpeed: convertUnit(convertMeterPerSecToKiloMeterPerHour, 'windSpeed', 'km/h', obj),
+      windSpeed: convertUnit(convertMeterPerSecToKiloMeterPerHour, 'windSpeed', ' km/h', obj),
     };
     return metricUnits;
   };
@@ -79,7 +80,7 @@ const formatData = data => {
       temp: convertUnit(convertCelsuisToFahrenheit, 'temp', '°F', obj),
       tempMax: convertUnit(convertCelsuisToFahrenheit, 'tempMax', '°F', obj),
       tempMin: convertUnit(convertCelsuisToFahrenheit, 'tempMin', '°F', obj),
-      windSpeed: convertUnit(convertMeterPerSecToMilesPerHour, 'windSpeed', 'mph', obj),
+      windSpeed: convertUnit(convertMeterPerSecToMilesPerHour, 'windSpeed', ' mph', obj),
     };
     return impericalUnits;
   };
@@ -94,9 +95,9 @@ const formatData = data => {
       forecastDate: formatDataDate(cleanData, 'forecast'),
       cloudiness: formatUnit('cloudiness', '%', cleanData),
       humidity: formatUnit('humidity', '%', cleanData),
-      pressure: formatUnit('pressure', 'hPa', cleanData),
-      groundLevel: formatUnit('groundLevel', 'hPa', cleanData),
-      seaLevel: formatUnit('seaLevel', 'hPa', cleanData),
+      pressure: formatUnit('pressure', ' hPa', cleanData),
+      groundLevel: formatUnit('groundLevel', ' hPa', cleanData),
+      seaLevel: formatUnit('seaLevel', ' hPa', cleanData),
       windDirection: formatUnit('windDirection', '°', cleanData),
       weatherCondition: cleanData.weatherCondition,
       weatherDescription: cleanData.weatherDescription,

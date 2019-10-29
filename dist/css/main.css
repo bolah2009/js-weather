@@ -71,39 +71,51 @@ section {
   padding: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .content {
   width: 100%;
+  position: relative;
   min-height: 100vh;
 }
 
-.content.clear-sky {
-  background:
-    border-box center/cover no-repeat
-    url("../images/clear_sky.jpg");
+.content.clear-weather {
+  background: border-box center/cover no-repeat url("../images/clear_sky.jpg");
   background-color: rgb(1, 1, 255);
 }
 
-.content.cloud {
+.content.clouds-weather {
   background: border-box center/cover no-repeat url("../images/cloud.png");
   background-color: rgb(50, 60, 255);
 }
 
-.content.mist {
+.content.tornado-weather,
+.content.mist-weather,
+.content.smoke-weather,
+.content.haze-weather,
+.content.fog-weather,
+.content.sand-weather,
+.content.dust-weather,
+.content.ash-weather,
+.content.squall-weather {
   background: border-box center/cover no-repeat url("../images/mist.jpg");
   background-color: rgb(50, 50, 50);
 }
 
-.content.rain {
+.content.drizzle-weather,
+.content.rain-weather {
   background: border-box center/cover no-repeat url("../images/rain.jpg");
   background-color: rgb(10, 10, 255);
 }
 
-.content.snow {
+.content.snow-weather {
   background: border-box center/cover no-repeat url("../images/snow.jpg");
   background-color: rgb(250, 250, 250);
 }
 
-.content.thunderstorm {
+.content.thunderstorm-weather {
   background:
     border-box center/cover no-repeat
     url("../images/thunderstorm.jpg");
@@ -258,6 +270,10 @@ section {
   width: 48px;
 }
 
+.forecast-card .unit {
+  font-size: 0.6em;
+}
+
 .min-temp,
 .max-temp {
   font-size: 12px;
@@ -298,6 +314,31 @@ section {
   background-color: #ccc;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.predictions {
+  width: 80%;
+  padding: 8px;
+}
+
+.prediction-list {
+  width: 100%;
+  margin: 2px 0;
+}
+
+.prediction-list-item {
+  width: 100%;
+  text-align: center;
+  padding: 2px 0;
+  background: none;
+  border: 1px solid #ccc;
+  color: rgb(55, 55, 255);
+  cursor: pointer;
+}
+
+.prediction-list-item:hover {
+  color: #fff;
+  background-color: rgb(55, 55, 255);
 }
 
 .slider::before {
@@ -370,5 +411,90 @@ input:focus + .slider {
 @media (min-width: 780px) {
   .card {
     min-width: 624px;
+  }
+}
+
+.card.loading {
+  position: absolute;
+  background-color: rgba(0, 0, 200, 0.7);
+  background-image: linear-gradient(-105deg, #009acc, #363795);
+  top: 0;
+  bottom: 0;
+}
+
+.card.loading .text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  padding: 16px;
+  bottom: 20%;
+}
+
+.spinner {
+  -webkit-animation: rotate 2s linear infinite;
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 80px;
+  height: 80px;
+}
+
+.spinner .path {
+  stroke: #93bfec;
+  stroke-linecap: round;
+  -webkit-animation: dash 1.5s ease-in-out infinite;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
   }
 }
