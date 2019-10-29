@@ -16,7 +16,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.WEATHER_API': JSON.stringify(process.env.WEATHER_API),
       'process.env.PLACES_API': JSON.stringify(process.env.PLACES_API),
-      'process.env.GEOLOCATION_API': JSON.stringify(process.env.GEOLOCATION_API),
     }),
   ],
 };

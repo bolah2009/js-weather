@@ -173,7 +173,7 @@ const startApp = () => {
   });
 
   predictionsDataListElement.addEventListener('click', ({ target: { dataset: { type, value } } }) => {
-    if (!type || type !== 'predictions') { return; }
+    if (!type || type !== 'predictions' || value === 'null') { return; }
     const placeID = value;
     spinner.classList.remove('d-none');
     getPlaceDetails(placeID).then(location => {
