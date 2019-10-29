@@ -1,13 +1,20 @@
-import getWeatherData from './modules/weather';
+import getWeatherData from './modules/api/weather';
+import { getPlaceAutocomplete, getPlaceDetails } from './modules/api/places';
+import getCurrentLocation from './modules/api/geolocation';
 
 const mainContent = document.querySelector('#content');
 const locationHeaderElement = document.querySelector('.weather-location');
 const mainWeatherDataElement = document.querySelectorAll('.main-weather-data');
 const forecastDataElement = document.querySelectorAll('.forecast-card');
 const unitCheckBox = document.querySelector('input[type="checkbox"]');
+const predictionsDataListElement = document.querySelector('#predictions');
+const locationInput = document.querySelector('#location');
+const spinner = document.querySelector('.card.loading');
+const spinnerStatus = document.querySelector('.card.loading .text');
 
-const populateForecastData = async (city = 'Lagos,ng') => {
-  let { forecasts, cityName, message } = await getWeatherData(city);
+
+const populateForecastData = async (info = { location: {}, type: 'city', city: 'Lagos,ng' }) => {
+  let { forecasts, cityName, message } = await getWeatherData(info);
 
   const locationHeader = (status = cityName) => {
     locationHeaderElement.textContent = status;
@@ -64,8 +71,8 @@ const populateForecastData = async (city = 'Lagos,ng') => {
     forecast(unit);
   };
 
-  const changeCity = async (newCity, newUnit) => {
-    ({ forecasts, cityName, message } = await getWeatherData(newCity));
+  const changeCity = async (newInfo, newUnit) => {
+    ({ forecasts, cityName, message } = await getWeatherData(newInfo));
     if (message) { return locationHeader(message); }
     return all(newUnit);
   };
@@ -75,11 +82,32 @@ const populateForecastData = async (city = 'Lagos,ng') => {
   };
 };
 
+const populateAutocomplete = async input => {
+  const { status, predictionsList } = await getPlaceAutocomplete(input);
+  const resultHTML = (description = 'No Result Found', placeID = null) => `
+  <li class="prediction-list" >
+    <button type="button" class="prediction-list-item" data-value=${placeID} data-type="predictions">
+      ${description}
+    </button>
+  </li>
+  `;
+  if (status) {
+    predictionsDataListElement.innerHTML = resultHTML();
+    return false;
+  }
+
+  const predictionOptions = [];
+  predictionsList.forEach(prediction => {
+    const { description, placeID } = prediction;
+    predictionOptions.push(resultHTML(description, placeID));
+  });
+  predictionsDataListElement.innerHTML = predictionOptions.join('');
+  return true;
+};
 
 const startApp = () => {
   const metric = document.querySelector('#metric');
   const imperial = document.querySelector('#imperial');
-  const locationInput = document.querySelector('#location');
   const forecastDataPromise = populateForecastData();
   const toggleActiveForecastCard = (cards, oldCard, newCard) => {
     if (oldCard === newCard) { return; }
@@ -90,7 +118,24 @@ const startApp = () => {
   let main = 0;
 
   const getUnit = () => (unitCheckBox.checked ? 'imperical' : 'metric');
-  forecastDataPromise.then(obj => obj.all(getUnit()));
+  const handleCurrentLocation = position => {
+    if (position.status) {
+      spinnerStatus.textContent = `${position.status}, loading default location weather details`;
+      forecastDataPromise.then(obj => {
+        obj.all(getUnit());
+        setTimeout(() => spinner.classList.add('d-none'), 1000);
+      });
+    } else {
+      spinnerStatus.textContent = 'Location found, loading weather details';
+      const info = { location: position, type: 'location' };
+      forecastDataPromise.then(obj => {
+        obj.changeCity(info, getUnit());
+        setTimeout(() => spinner.classList.add('d-none'), 100);
+      });
+    }
+  };
+
+  getCurrentLocation(handleCurrentLocation);
 
   unitCheckBox
     .addEventListener('click', ({ target: { checked } }) => {
@@ -102,8 +147,12 @@ const startApp = () => {
   document
     .querySelector('#get-location')
     .addEventListener('click', () => {
-      const city = locationInput.value;
-      forecastDataPromise.then(obj => obj.changeCity(city, getUnit()));
+      const info = { city: locationInput.value, type: 'city' };
+      spinner.classList.remove('d-none');
+      forecastDataPromise.then(obj => {
+        obj.changeCity(info, getUnit());
+        setTimeout(() => spinner.classList.add('d-none'), 1000);
+      });
       toggleActiveForecastCard(forecastDataElement, main, 0);
       main = 0;
     });
@@ -114,6 +163,25 @@ const startApp = () => {
       toggleActiveForecastCard(forecastDataElement, main, key);
       forecastDataPromise.then(obj => obj.main(getUnit(), key));
       main = key;
+    });
+  });
+
+  locationInput.addEventListener('keyup', ({ currentTarget: { value } }) => {
+    if (value.length > 2) {
+      populateAutocomplete(value);
+    }
+  });
+
+  predictionsDataListElement.addEventListener('click', ({ target: { dataset: { type, value } } }) => {
+    if (!type || type !== 'predictions') { return; }
+    const placeID = value;
+    spinner.classList.remove('d-none');
+    getPlaceDetails(placeID).then(location => {
+      const info = { location, type: 'location' };
+      forecastDataPromise.then(obj => {
+        obj.changeCity(info, getUnit());
+        setTimeout(() => spinner.classList.add('d-none'), 1000);
+      });
     });
   });
 };

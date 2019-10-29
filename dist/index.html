@@ -32,7 +32,9 @@
         <div class="heading d-flex col-reverse row-sm ai-c jc-sb">
           <div class="weather-heading d-flex col ai-c">
             <h1 class="weather-location">City</h1>
-            <p class="weather-day main-weather-data" data-name="date">Day (Time)</p>
+            <p class="weather-day main-weather-data" data-name="date">
+              Day (Time)
+            </p>
             <p
               class="weather-name main-weather-data"
               data-name="weatherCondition"
@@ -43,7 +45,7 @@
               class="weather-description main-weather-data"
               data-name="weatherDescription"
             >
-             Weather Description
+              Weather Description
             </p>
           </div>
           <div class="control-panel">
@@ -51,21 +53,34 @@
               <input
                 type="search"
                 class="search"
+                autocomplete="off"
                 placeholder="Enter Location (City)"
                 name="location"
                 id="location"
               />
+              <ul class="predictions" id="predictions">
+              </ul>
               <label class="input unit d-flex col ai-c">
                 <div class="choice d-flex ai-c">
                   <span id="metric" class="metric">Metric</span>
                   <span class="switch">
-                    <input data-action="toggleUnit" class="switch-unit" type="checkbox" checked />
+                    <input
+                      data-action="toggleUnit"
+                      class="switch-unit"
+                      type="checkbox"
+                      checked
+                    />
                     <span class="slider"></span>
                   </span>
                   <span class="checked imperial" id="imperial">Imperial</span>
                 </div>
               </label>
-              <button data-action="getWeather" type="button" class="button" id="get-location">
+              <button
+                data-action="getWeather"
+                type="button"
+                class="button"
+                id="get-location"
+              >
                 Get Weather Details
               </button>
             </form>
@@ -82,7 +97,8 @@
               />
             </div>
             <div class="main-temp d-flex">
-              <span class="digit main-weather-data d-flex" data-name="temp">90</span
+              <span class="digit main-weather-data d-flex" data-name="temp"
+                >90</span
               >
             </div>
           </div>
@@ -214,6 +230,12 @@
           </section>
         </div>
       </section>
+      <div class="card loading">
+        <svg class="spinner" viewBox="0 0 50 50">
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+        <div class="text">Loading weather details</div>
+      </div>
     </div>
     <script src="main.js"></script>
   </body>

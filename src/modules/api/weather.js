@@ -1,17 +1,25 @@
-import formatData from './helpers/formatUnits';
+import formatData from '../helpers/formatUnits';
 
 const apiKey = process.env.WEATHER_API;
 
-const fetchWeatherData = async city => {
-  const uri = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+const getQuery = ({ type, location, city }) => {
+  if (type === 'city') {
+    return `q=${city}&appid=${apiKey}&units=metric`;
+  }
+  const { lat, lon } = location;
+  return `lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+};
+
+const fetchWeatherData = async (info = { location: {}, type: 'city', city: 'Lagos,ng' }) => {
+  const uri = `https://api.openweathermap.org/data/2.5/forecast?${getQuery(info)}`;
   const response = await fetch(uri);
   const data = await response.json();
   const { ok } = response;
   return { data, ok };
 };
 
-const getWeatherData = async location => {
-  const { data, ok } = await fetchWeatherData(location);
+const getWeatherData = async (info = { location: {}, type: 'city', city: 'Lagos,ng' }) => {
+  const { data, ok } = await fetchWeatherData(info);
   if (!ok) {
     const { message } = data;
     return { message };
@@ -31,10 +39,12 @@ const getWeatherData = async location => {
       filtered.push(formatForecastData);
       day += 1;
       day %= 7;
+    } else if ((new Date()).getDay() === day && (new Date()).getHours() > 20) {
+      day += 1;
+      day %= 7;
     }
     if (filtered.length === 5) { break; }
   }
-
   return { forecasts: filtered, cityName };
 };
 
