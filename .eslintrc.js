@@ -2,9 +2,14 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    jest: true,
   },
   extends: [
     'airbnb-base',
+    'plugin:jsdoc/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'prettier',
   ],
   globals: {
     Atomics: 'readonly',
@@ -14,8 +19,12 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  plugins: ['prettier', 'jsdoc'],
   rules: {
-    "no-param-reassign": [2, { "props": false }],
-    "arrow-parens": ["error", "as-needed"]
+    'no-shadow': 0,
+    'no-param-reassign': ['error', { props: false }],
+    'arrow-parens': ['error', 'as-needed'],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'prettier/prettier': 'error',
   },
 };
