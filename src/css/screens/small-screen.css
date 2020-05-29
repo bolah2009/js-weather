@@ -1,0 +1,17 @@
+.card {
+  min-width: 80%;
+}
+
+.weather-heading,
+.control-panel {
+  min-width: 40%;
+}
+
+.weather-temperature,
+.weather-details {
+  min-width: 30%;
+}
+
+.forecast-card {
+  min-width: 18%;
+}

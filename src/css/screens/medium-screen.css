@@ -1,0 +1,11 @@
+.card {
+  min-width: 624px;
+}
+
+.footer-list-item {
+  width: 50%;
+}
+
+.footer-list-item p {
+  padding: 0;
+}

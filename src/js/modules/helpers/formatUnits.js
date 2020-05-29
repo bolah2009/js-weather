@@ -14,15 +14,8 @@ const formatData = data => {
         grnd_level: groundLevel,
         sea_level: seaLevel,
       },
-      weather: [{
-        main: weatherCondition,
-        description: weatherDescription,
-        icon: weatherIcon,
-      }],
-      wind: {
-        deg: windDirection,
-        speed: windSpeed,
-      },
+      weather: [{ main: weatherCondition, description: weatherDescription, icon: weatherIcon }],
+      wind: { deg: windDirection, speed: windSpeed },
     } = rawData;
 
     return {
@@ -50,15 +43,16 @@ const formatData = data => {
     return formatDate().toShortDay(date);
   };
 
-  const concatenateUnitandValue = (value, unit) => `${value.toFixed(0)}<span class="unit">${unit}</span>`;
+  const concatenateUnitandValue = (value, unit) =>
+    `${value.toFixed(0)}<span class="unit">${unit}</span>`;
   const formatUnit = (param, paramUnit, obj = {}) => {
     const value = obj[`${param}`];
     return concatenateUnitandValue(value, paramUnit);
   };
 
-  const convertCelsuisToFahrenheit = value => (((value * 9) / 5) + 32);
-  const convertMeterPerSecToMilesPerHour = value => (value * 2.237);
-  const convertMeterPerSecToKiloMeterPerHour = value => (value * 3.6);
+  const convertCelsuisToFahrenheit = value => (value * 9) / 5 + 32;
+  const convertMeterPerSecToMilesPerHour = value => value * 2.237;
+  const convertMeterPerSecToKiloMeterPerHour = value => value * 3.6;
   const convertUnit = (converter, param, paramUnit, obj = {}) => {
     const value = obj[`${param}`];
     const convertValue = converter(value);

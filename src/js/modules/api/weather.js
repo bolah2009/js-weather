@@ -25,25 +25,30 @@ const getWeatherData = async (info = { location: {}, type: 'city', city: 'Lagos,
     return { message };
   }
 
-  const { list = [], city: { name: cityName } } = data;
+  const {
+    list = [],
+    city: { name: cityName },
+  } = data;
 
   const filtered = [];
 
-  let day = (new Date()).getDay();
+  let day = new Date().getDay();
 
   for (let index = 0; index < list.length; index += 1) {
-    const listDay = (new Date(list[index].dt_txt)).getDay();
-    const listHour = (new Date(list[index].dt_txt)).getHours();
+    const listDay = new Date(list[index].dt_txt).getDay();
+    const listHour = new Date(list[index].dt_txt).getHours();
     if (listDay === day && listHour > 6) {
       const formatForecastData = formatData(list[index]);
       filtered.push(formatForecastData);
       day += 1;
       day %= 7;
-    } else if ((new Date()).getDay() === day && (new Date()).getHours() > 20) {
+    } else if (new Date().getDay() === day && new Date().getHours() > 20) {
       day += 1;
       day %= 7;
     }
-    if (filtered.length === 5) { break; }
+    if (filtered.length === 5) {
+      break;
+    }
   }
   return { forecasts: filtered, cityName };
 };

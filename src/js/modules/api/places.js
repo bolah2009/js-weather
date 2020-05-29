@@ -1,7 +1,9 @@
 const apiKey = process.env.PLACES_API;
 const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-const placesAutocompleteUri = input => `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=(cities)&key=${apiKey}`;
-const placesDetailsUri = placeId => `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${apiKey}`;
+const placesAutocompleteUri = input =>
+  `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=(cities)&key=${apiKey}`;
+const placesDetailsUri = placeId =>
+  `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=geometry&key=${apiKey}`;
 
 const fetchPlacesApi = async input => {
   const response = await fetch(proxyurl + input);
@@ -29,7 +31,11 @@ export const getPlaceAutocomplete = async input => {
 export const getPlaceDetails = async placeID => {
   const { status, result } = await fetchPlaceDetails(placeID);
   if (status === 'OK') {
-    const { geometry: { location: { lat, lng: lon } } } = result;
+    const {
+      geometry: {
+        location: { lat, lng: lon },
+      },
+    } = result;
     return { lat, lon };
   }
   return { status };

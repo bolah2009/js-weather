@@ -12,7 +12,6 @@ const locationInput = document.querySelector('#location');
 const spinner = document.querySelector('.card.loading');
 const spinnerStatus = document.querySelector('.card.loading .text');
 
-
 const populateForecastData = async (info = { location: {}, type: 'city', city: 'Lagos,ng' }) => {
   let { forecasts, cityName, message } = await getWeatherData(info);
 
@@ -20,7 +19,9 @@ const populateForecastData = async (info = { location: {}, type: 'city', city: '
     locationHeaderElement.textContent = status;
   };
 
-  if (message) { return locationHeader(message); }
+  if (message) {
+    return locationHeader(message);
+  }
   const attachDataToDOM = (position, element, unitType = 'metric') => {
     const mainForecast = forecasts[position][unitType];
     element.forEach(({ dataset: { name } }, index) => {
@@ -35,11 +36,21 @@ const populateForecastData = async (info = { location: {}, type: 'city', city: '
   };
 
   const weatherClass = [
-    'thunderstorm-weather', 'drizzle-weather', 'snow-weather',
-    'tornado-weather', 'clear-weather', 'mist-weather',
-    'smoke-weather', 'haze-weather', 'dust-weather',
-    'fog-weather', 'sand-weather', 'ash-weather',
-    'squall-weather', 'clouds-weather', 'rain-weather',
+    'thunderstorm-weather',
+    'drizzle-weather',
+    'snow-weather',
+    'tornado-weather',
+    'clear-weather',
+    'mist-weather',
+    'smoke-weather',
+    'haze-weather',
+    'dust-weather',
+    'fog-weather',
+    'sand-weather',
+    'ash-weather',
+    'squall-weather',
+    'clouds-weather',
+    'rain-weather',
   ];
   const toWeatherClass = weatherCondition => `${weatherCondition.toLowerCase()}-weather`;
   const styleBackground = (backgroundElement, { weatherCondition }) => {
@@ -54,7 +65,9 @@ const populateForecastData = async (info = { location: {}, type: 'city', city: '
 
   const forecast = unit => {
     forecastDataElement.forEach(card => {
-      const { dataset: { day } } = card;
+      const {
+        dataset: { day },
+      } = card;
       const cardNodeList = card.querySelectorAll('[data-name]');
       attachDataToDOM(day, cardNodeList, unit);
     });
@@ -73,12 +86,17 @@ const populateForecastData = async (info = { location: {}, type: 'city', city: '
 
   const changeCity = async (newInfo, newUnit) => {
     ({ forecasts, cityName, message } = await getWeatherData(newInfo));
-    if (message) { return locationHeader(message); }
+    if (message) {
+      return locationHeader(message);
+    }
     return all(newUnit);
   };
 
   return {
-    all, main, toggleUnit, changeCity,
+    all,
+    main,
+    toggleUnit,
+    changeCity,
   };
 };
 
@@ -110,7 +128,9 @@ const startApp = () => {
   const imperial = document.querySelector('#imperial');
   const forecastDataPromise = populateForecastData();
   const toggleActiveForecastCard = (cards, oldCard, newCard) => {
-    if (oldCard === newCard) { return; }
+    if (oldCard === newCard) {
+      return;
+    }
     cards[oldCard].classList.remove('active');
     cards[newCard].classList.add('active');
   };
@@ -137,29 +157,28 @@ const startApp = () => {
 
   getCurrentLocation(handleCurrentLocation);
 
-  unitCheckBox
-    .addEventListener('click', ({ target: { checked } }) => {
-      forecastDataPromise.then(obj => obj.toggleUnit(getUnit(), main));
-      imperial.classList.toggle('checked', checked);
-      metric.classList.toggle('checked', !checked);
-    });
+  unitCheckBox.addEventListener('click', ({ target: { checked } }) => {
+    forecastDataPromise.then(obj => obj.toggleUnit(getUnit(), main));
+    imperial.classList.toggle('checked', checked);
+    metric.classList.toggle('checked', !checked);
+  });
 
-  document
-    .querySelector('#get-location')
-    .addEventListener('click', () => {
-      const info = { city: locationInput.value, type: 'city' };
-      spinner.classList.remove('d-none');
-      forecastDataPromise.then(obj => {
-        obj.changeCity(info, getUnit());
-        setTimeout(() => spinner.classList.add('d-none'), 1000);
-      });
-      toggleActiveForecastCard(forecastDataElement, main, 0);
-      main = 0;
+  document.querySelector('#get-location').addEventListener('click', () => {
+    const info = { city: locationInput.value, type: 'city' };
+    spinner.classList.remove('d-none');
+    forecastDataPromise.then(obj => {
+      obj.changeCity(info, getUnit());
+      setTimeout(() => spinner.classList.add('d-none'), 1000);
     });
+    toggleActiveForecastCard(forecastDataElement, main, 0);
+    main = 0;
+  });
 
   forecastDataElement.forEach((node, key) => {
     node.addEventListener('click', () => {
-      if (main === key) { return; }
+      if (main === key) {
+        return;
+      }
       toggleActiveForecastCard(forecastDataElement, main, key);
       forecastDataPromise.then(obj => obj.main(getUnit(), key));
       main = key;
@@ -172,18 +191,27 @@ const startApp = () => {
     }
   });
 
-  predictionsDataListElement.addEventListener('click', ({ target: { dataset: { type, value } } }) => {
-    if (!type || type !== 'predictions' || value === 'null') { return; }
-    const placeID = value;
-    spinner.classList.remove('d-none');
-    getPlaceDetails(placeID).then(location => {
-      const info = { location, type: 'location' };
-      forecastDataPromise.then(obj => {
-        obj.changeCity(info, getUnit());
-        setTimeout(() => spinner.classList.add('d-none'), 1000);
+  predictionsDataListElement.addEventListener(
+    'click',
+    ({
+      target: {
+        dataset: { type, value },
+      },
+    }) => {
+      if (!type || type !== 'predictions' || value === 'null') {
+        return;
+      }
+      const placeID = value;
+      spinner.classList.remove('d-none');
+      getPlaceDetails(placeID).then(location => {
+        const info = { location, type: 'location' };
+        forecastDataPromise.then(obj => {
+          obj.changeCity(info, getUnit());
+          setTimeout(() => spinner.classList.add('d-none'), 1000);
+        });
       });
-    });
-  });
+    },
+  );
 };
 
-startApp();
+export default startApp;

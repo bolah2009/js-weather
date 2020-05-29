@@ -1,15 +1,7 @@
 const formatDate = () => {
   const now = new Date();
 
-  const week = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+  const week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   const newDate = date => new Date(date);
   const weekIndex = date => newDate(date).getDay();
@@ -23,7 +15,9 @@ const formatDate = () => {
     const formatMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const formatHour = () => {
       const newHour = hour > 12 ? hour - 12 : hour;
-      if (newHour < 12) { return `0${newHour}`; }
+      if (newHour < 12) {
+        return `0${newHour}`;
+      }
       return newHour;
     };
     return `${formatHour()}:${formatMinutes} ${timePeriods}`;
@@ -34,7 +28,10 @@ const formatDate = () => {
   const toFullDayWithTime = date => `${dayOfTheWeek(date)} (${toTime(date)})`;
 
   return {
-    toFullDay, toShortDay, toFullDayWithTime, isFuture,
+    toFullDay,
+    toShortDay,
+    toFullDayWithTime,
+    isFuture,
   };
 };
 

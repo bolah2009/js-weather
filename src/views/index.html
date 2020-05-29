@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <meta property="og:site_name" content="https://bolabuari.com" />
+    <meta property="og:title" content="Weather App" />
+    <meta property="og:description" content="A weather forecast app using the weather API." />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="https://bolabuari.com/js-weather/" />
+    <meta property="og:type" content="blog" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <main id="content" class="content clear-sky d-flex ai-c jc-c">
+      <section class="card">
+        <div class="heading d-flex col-rev row-sm ai-c jc-sb">
+          <div class="weather-heading d-flex col ai-c">
+            <h1 class="weather-location">City</h1>
+            <p class="weather-day main-weather-data" data-name="date">
+              Day (Time)
+            </p>
+            <p class="weather-name main-weather-data" data-name="weatherCondition">
+              Weather Condition
+            </p>
+            <p class="weather-description main-weather-data" data-name="weatherDescription">
+              Weather Description
+            </p>
+          </div>
+          <div class="control-panel">
+            <form action="#" class="form d-flex col ai-c">
+              <input
+                type="search"
+                class="search"
+                autocomplete="off"
+                placeholder="Enter Location (City)"
+                name="location"
+                id="location"
+              />
+              <ul class="predictions" id="predictions"></ul>
+              <div class="input unit d-flex col ai-c">
+                <label class="choice d-flex ai-c">
+                  <span id="metric" class="metric">Metric</span>
+                  <span class="switch">
+                    <input data-action="toggleUnit" class="switch-unit" type="checkbox" checked />
+                    <span class="slider"></span>
+                  </span>
+                  <span class="checked imperial" id="imperial">Imperial</span>
+                </label>
+              </div>
+              <button data-action="getWeather" type="button" class="button" id="get-location">
+                Get Weather Details
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="details d-flex col row-sm ai-c jc-sb">
+          <div class="weather-temperature d-flex ai-c jc-c">
+            <div class="img">
+              <img
+                src="../images/weather_icon.png"
+                alt="rain and cloudy"
+                class="main-weather-data main-icon"
+                data-name="weatherIcon"
+              />
+            </div>
+            <div class="main-temp d-flex">
+              <span class="digit main-weather-data d-flex" data-name="temp">90</span>
+            </div>
+          </div>
+          <div class="weather-details d-flex col ai-c">
+            <div class="weather-details-wraper">
+              <div class="precipitation ">
+                Cloudiness:
+                <span class="main-weather-data" data-name="cloudiness">40%</span>
+              </div>
+              <div class="humidity">
+                Humidity:
+                <span class="main-weather-data" data-name="humidity">84%</span>
+              </div>
+              <div class="wind">
+                Pressure:
+                <span class="main-weather-data" data-name="pressure">5 mph</span>
+              </div>
+            </div>
+          </div>
+          <div class="weather-details d-flex col ai-c">
+            <div class="weather-details-wraper">
+              <div class="precipitation ">
+                Wind Speed:
+                <span class="main-weather-data" data-name="windSpeed">40%</span>
+              </div>
+              <div class="humidity">
+                Wind Direction:
+                <span class="main-weather-data" data-name="windDirection">84%</span>
+              </div>
+              <div class="wind">
+                Ground Level:
+                <span class="main-weather-data" data-name="groundLevel">5 mph</span>
+              </div>
+              <div class="wind">
+                Sea Level:
+                <span class="main-weather-data" data-name="seaLevel">5 mph</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="forecast d-flex col row-sm ai-c jc-sb">
+          <section data-day="0" class="forecast-card active d-flex col ai-c">
+            <h4 class="day" data-name="forecastDate">Mon</h4>
+            <div class="img">
+              <img src="../images/weather_icon.png" alt="rain and cloudy" data-name="weatherIcon" />
+            </div>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
+            </div>
+          </section>
+          <section class="forecast-card d-flex col ai-c" data-day="1">
+            <h4 class="day" data-name="forecastDate">
+              Tue
+            </h4>
+            <div class="img">
+              <img src="../images/weather_icon.png" alt="rain and cloudy" data-name="weatherIcon" />
+            </div>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
+            </div>
+          </section>
+          <section class="forecast-card d-flex col ai-c" data-day="2">
+            <h4 class="day" data-name="forecastDate">
+              Wed
+            </h4>
+            <div class="img">
+              <img src="../images/weather_icon.png" alt="rain and cloudy" data-name="weatherIcon" />
+            </div>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
+            </div>
+          </section>
+          <section class="forecast-card d-flex col ai-c" data-day="3">
+            <h4 class="day" data-name="forecastDate">
+              Thu
+            </h4>
+            <div class="img">
+              <img src="../images/weather_icon.png" alt="rain and cloudy" data-name="weatherIcon" />
+            </div>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
+            </div>
+          </section>
+          <section class="forecast-card d-flex col ai-c" data-day="4">
+            <h4 class="day" data-name="forecastDate">
+              Fri
+            </h4>
+            <div class="img">
+              <img src="../images/weather_icon.png" alt="rain and cloudy" data-name="weatherIcon" />
+            </div>
+            <div class="forecast-temp d-flex">
+              <span class="min-temp d-flex" data-name="tempMin">85°</span>
+              <span class="max-temp d-flex" data-name="tempMax">80°</span>
+            </div>
+          </section>
+        </div>
+      </section>
+      <div class="card loading">
+        <svg class="spinner" viewBox="0 0 50 50">
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+        <div class="text">Loading weather details</div>
+      </div>
+    </main>
+    <footer class="footer">
+      <ul class="footer-list d-flex wrap jc-sa ai-c">
+        <li class="footer-list-item jc-c d-flex">
+          <ul class="social d-flex ai-c jc-sa">
+            <li>
+              <a
+                href="https://www.linkedin.com/in/bolah2009/"
+                target="_blank"
+                title="LinkedIn"
+                rel="noopener noreferrer"
+                class="icon-font linkedin"
+              ></a>
+            </li>
+
+            <li>
+              <a
+                href="https://github.com/bolah2009"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub"
+                class="icon-font github"
+              ></a>
+            </li>
+
+            <li>
+              <a
+                href="http://gitlab.com/bolah2009/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitLab"
+                class="icon-font gitlab d-flex col jc-c"
+              >
+                <svg class="gitlab" width="26px" height="23px" viewBox="0 0 210 194">
+                  <g fill="none" fill-rule="evenodd">
+                    <path class="path_1" d="M105 194l39-119H66l39 119z" />
+                    <path class="path_2" d="M105 194L66 75H12l93 119z" />
+                    <path class="path_3" d="M12 75L1 111c-2 3 0 7 2 9l102 74L12 75z" />
+                    <path class="path_1" d="M12 75h54L43 3c-1-4-6-4-7 0L12 75z" />
+                    <path class="path_2" d="M105 194l39-119h54l-93 119z" />
+                    <path class="path_3" d="M198 75l12 36c1 3-1 7-3 9l-102 74 93-119z" />
+                    <path class="path_1" d="M198 75h-54l23-72c1-4 6-4 8 0l23 72z" />
+                  </g>
+                </svg>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://twitter.com/bolah2009"
+                target="_blank"
+                title="Twitter"
+                rel="noopener noreferrer"
+                class="icon-font twitter"
+              ></a>
+            </li>
+          </ul>
+        </li>
+        <li class="footer-list-item jc-c ai-c d-flex col">
+          <p>
+            Built with HTML-CSS-JS, hosted on
+            <a href="https://netlify.com/" target="_blank" rel="noopener noreferrer"> Netlify</a>.
+          </p>
+          <p>
+            Source code open sourced on
+            <a href="https://github.com/js-weather" target="_blank" rel="noopener noreferrer">
+              GitHub</a
+            >
+          </p>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

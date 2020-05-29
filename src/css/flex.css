@@ -1,0 +1,41 @@
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.col-rev {
+  flex-direction: column-reverse;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.jc-sa {
+  justify-content: space-around;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+@media (min-width: 540px) {
+  .row-sm {
+    flex-direction: row;
+  }
+}
