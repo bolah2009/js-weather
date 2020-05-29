@@ -13,61 +13,64 @@ The objective is to create a weather forecast app using the weather API. The fea
 - Improve city search using [Google Places API](https://developers.google.com/places/web-service/intro)
 - Add current location functionality using [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 
-### [Assignment link](https://www.theodinproject.com/courses/javascript/lessons/weather-app)
+## 🌐 [Live link](https://bolah-js-weather.netlify.com/)
 
-### Development
+## 🖼️ Screenshots
 
-- Dependencies
+|    Small Screen     |  Medium Screen   |
+| :-----------------: | :--------------: |
+| ![Small Screen](https://user-images.githubusercontent.com/36057474/67806287-d9566d80-fa92-11e9-974e-ffb15f54755d.png) | ![Medium Screen](https://user-images.githubusercontent.com/36057474/67806286-d8bdd700-fa92-11e9-94ad-a2fe0bfee6c9.png) |
 
-  - `eslint`: `^6.3.0`
-  - `eslint-config-airbnb`: `^18.0.1`
-  - `eslint-config-airbnb-base`: `^14.0.0`
-  - `eslint-plugin-import`: `^2.18.2`
-  - `stylelint`: `^11.0.0`
-  - `stylelint-config-recommended`: `^3.0.0`
-  - `webpack`: `^4.40.0`
-  - `webpack-cli`: `^3.3.8`
-  - `webpack-dev-server`: `^3.8.1`
+## 🛠️ Development
 
 - Clone the project
 
 ```bash
 git clone https://github.com/bolah2009/js-weather.git
-
 ```
 
-- Instal Dependencies
+- Install Dependencies
 
 ```bash
-npm install
+yarn install
+```
+
+- Run linter (eslint and stylelint)
+
+```bash
+yarn lint:check
+```
+
+- Run Prettier
+
+```bash
+yarn format:check
 ```
 
 - Set up environment variables:
 
-To use in the development environment, please, configure [`dotenv`](https://github.com/motdotla/dotenv) by renaming the `.env.sample` to `.env` and replacing `YOUR_API_KEY_HERE` to appropriate API keys.
+To use in the development environment, please, configure [`dotenv`](https://github.com/motdotla/dotenv) by running the command below to copy `.env.sample` into `.env`:
+
+```sh
+cp .env.sample .env
+```
+
+and replacing `YOUR_API_KEY_HERE` to appropriate API keys.
 
 See [OpenWeatherMap API guide](https://openweathermap.org/guide) for `WEATHER_API` and
 [Places API guide](https://developers.google.com/places/web-service/intro) for `PLACES_API`.
 
-- Run Script (Development mode)
+- Start server (Development mode)
 
 ```bash
-npm run dev
+yarn start
 ```
 
-- Run Script (Production mode)
+## 🧾 TODO
 
-```bash
-npm run build
-```
+- Improve UI/UX
 
-- Start server
-
-```bash
-npm run start
-```
-
-### Usage
+## 👨🏽‍🏫 Usage
 
 The placeholder of the search input shows the format it accepts which is a city name `city`. e.g. `lagos`, `london`, `Abuja` and it's not case sensitive. See the demo below.
 
@@ -77,14 +80,25 @@ The input also generates location predictions using Google Place API, clicking o
 
 ![weather_app_predictions](https://user-images.githubusercontent.com/36057474/67806226-bfb52600-fa92-11e9-929c-aa3edab1c70d.gif)
 
-### [Live link](https://bolah-js-weather.netlify.com/)
+## 🤝🏾 Contributing
 
-### Screenshots
+- Contributions, issues and feature requests are welcome!
 
-|                                                     Small Screen                                                      |                                                     Medium Screen                                                      |
-| :-------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
-| ![Small Screen](https://user-images.githubusercontent.com/36057474/67806287-d9566d80-fa92-11e9-974e-ffb15f54755d.png) | ![Medium Screen](https://user-images.githubusercontent.com/36057474/67806286-d8bdd700-fa92-11e9-94ad-a2fe0bfee6c9.png) |
+- Feel free to check the [issues page](../../issues).
 
-### Authors
+## ⭐️ Show your support
+
+- Give a ⭐️ if you like this project!
+
+## 🙏🏾 Acknowledgments
+
+- Microverse Team
+- [The Odin Project](https://www.theodinproject.com/courses/javascript/lessons/weather-app)
+
+## 👨🏽‍💻 Author
 
 - [@bolah2009](https://github.com/bolah2009/)
+
+## 📝 License
+
+- [MIT licensed](./LICENSE).
